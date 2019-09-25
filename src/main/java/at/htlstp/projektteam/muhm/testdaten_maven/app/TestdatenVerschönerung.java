@@ -138,7 +138,7 @@ public class TestdatenVerschönerung {
         i = 0;
 //        System.out.println(lh);
         for (Help h : lh) {
-            i++;
+           
 //            System.out.println(h);
             lp.add(new Partei(h.getPt_party1()));
             lp.add(new Partei(h.getPt_party2()));
@@ -149,12 +149,13 @@ public class TestdatenVerschönerung {
             lr.add(new Region(h.getRg_id(), h.getRg_name()));
 //            if (!(p.getParty().equals(h.getPt_party1()) || p.getParty().equals(h.getPt_party2()) || p.getParty().equals(h.getPt_party3()) || p.getParty().equals(h.getPt_party4()) || p.getParty().equals(h.getPt_party5()) || p.getParty().equals(h.getPt_party6()))) {
             lud.add(new UmfrageDaten(h.getUd_id(), h.getUd_institut(), h.getUd_medium(), h.getUd_befragtenanzahl(), h.getUd_schwankungsbreite(), h.getUd_datum(), h.getUd_befragungsmethode()));
-            lup.add(new ud_pt(h.getUd_id(), h.getPt_party1(), h.getUp_value1()));
-            lup.add(new ud_pt(h.getUd_id(), h.getPt_party2(), h.getUp_value2()));
-            lup.add(new ud_pt(h.getUd_id(), h.getPt_party3(), h.getUp_value3()));
-            lup.add(new ud_pt(h.getUd_id(), h.getPt_party4(), h.getUp_value4()));
-            lup.add(new ud_pt(h.getUd_id(), h.getPt_party5(), h.getUp_value5()));
-            lup.add(new ud_pt(h.getUd_id(), h.getPt_party6(), h.getUp_value6()));
+            lup.add(new ud_pt(lud.get(i), lp.get(i*6), h.getUp_value1()));
+            lup.add(new ud_pt(lud.get(i), lp.get((i+1)*6), h.getUp_value2()));
+            lup.add(new ud_pt(lud.get(i), lp.get((i+2)*6), h.getUp_value3()));
+            lup.add(new ud_pt(lud.get(i), lp.get((i+3)*6), h.getUp_value4()));
+            lup.add(new ud_pt(lud.get(i), lp.get((i+4)*6), h.getUp_value5()));
+            lup.add(new ud_pt(lud.get(i), lp.get((i+5)*6), h.getUp_value6())); 
+            i++;
         }
         System.out.println(i);
         lph = new TreeSet<String>(lp.stream().map(lap -> lap.getParty()).collect(Collectors.toList()));
