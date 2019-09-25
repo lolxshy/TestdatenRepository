@@ -150,11 +150,11 @@ public class TestdatenVerschönerung {
 //            if (!(p.getParty().equals(h.getPt_party1()) || p.getParty().equals(h.getPt_party2()) || p.getParty().equals(h.getPt_party3()) || p.getParty().equals(h.getPt_party4()) || p.getParty().equals(h.getPt_party5()) || p.getParty().equals(h.getPt_party6()))) {
             lud.add(new UmfrageDaten(h.getUd_id(), h.getUd_institut(), h.getUd_medium(), h.getUd_befragtenanzahl(), h.getUd_schwankungsbreite(), h.getUd_datum(), h.getUd_befragungsmethode(),lr.get(i)));
             lup.add(new ud_pt(lud.get(i), lp.get(i*6), h.getUp_value1()));
-            lup.add(new ud_pt(lud.get(i), lp.get((i+1)*6), h.getUp_value2()));
-            lup.add(new ud_pt(lud.get(i), lp.get((i+2)*6), h.getUp_value3()));
-            lup.add(new ud_pt(lud.get(i), lp.get((i+3)*6), h.getUp_value4()));
-            lup.add(new ud_pt(lud.get(i), lp.get((i+4)*6), h.getUp_value5()));
-            lup.add(new ud_pt(lud.get(i), lp.get((i+5)*6), h.getUp_value6())); 
+            lup.add(new ud_pt(lud.get(i), lp.get((i*6)+1), h.getUp_value2()));
+            lup.add(new ud_pt(lud.get(i), lp.get((i*6)+2), h.getUp_value3()));
+            lup.add(new ud_pt(lud.get(i), lp.get((i*6)+3), h.getUp_value4()));
+            lup.add(new ud_pt(lud.get(i), lp.get((i*6)+4), h.getUp_value5()));
+            lup.add(new ud_pt(lud.get(i), lp.get((i*6)+5), h.getUp_value6())); 
             i++;
         }
         System.out.println(i);
