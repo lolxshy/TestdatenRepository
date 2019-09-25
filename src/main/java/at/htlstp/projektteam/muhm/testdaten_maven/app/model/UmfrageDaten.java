@@ -6,6 +6,7 @@
 package at.htlstp.projektteam.muhm.testdaten_maven.app.model;
 
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -132,6 +133,55 @@ public class UmfrageDaten {
     @Override
     public String toString() {
         return "UmfrageDaten{" + "ud_id=" + ud_id + ", ud_institut=" + ud_institut + ", ud_medium=" + ud_medium + ", ud_befragtenanzahl=" + ud_befragtenanzahl + ", ud_schwankungsbreite=" + ud_schwankungsbreite + ", ud_datum=" + ud_datum + ", ud_befragungsmethode=" + ud_befragungsmethode + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + this.ud_id;
+        hash = 37 * hash + Objects.hashCode(this.ud_institut);
+        hash = 37 * hash + Objects.hashCode(this.ud_medium);
+        hash = 37 * hash + this.ud_befragtenanzahl;
+        hash = 37 * hash + (int) (Double.doubleToLongBits(this.ud_schwankungsbreite) ^ (Double.doubleToLongBits(this.ud_schwankungsbreite) >>> 32));
+        hash = 37 * hash + Objects.hashCode(this.ud_datum);
+        hash = 37 * hash + Objects.hashCode(this.ud_befragungsmethode);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final UmfrageDaten other = (UmfrageDaten) obj;
+        if (this.ud_id != other.ud_id) {
+            return false;
+        }
+        if (this.ud_befragtenanzahl != other.ud_befragtenanzahl) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.ud_schwankungsbreite) != Double.doubleToLongBits(other.ud_schwankungsbreite)) {
+            return false;
+        }
+        if (!Objects.equals(this.ud_institut, other.ud_institut)) {
+            return false;
+        }
+        if (!Objects.equals(this.ud_medium, other.ud_medium)) {
+            return false;
+        }
+        if (!Objects.equals(this.ud_befragungsmethode, other.ud_befragungsmethode)) {
+            return false;
+        }
+        if (!Objects.equals(this.ud_datum, other.ud_datum)) {
+            return false;
+        }
+        return true;
     }
    
     
