@@ -10,6 +10,7 @@ import at.htlstp.projektteam.muhm.testdaten_maven.app.model.Region;
 import at.htlstp.projektteam.muhm.testdaten_maven.app.model.ud_pt;
 import at.htlstp.projektteam.muhm.testdaten_maven.app.model.Partei;
 import at.htlstp.projektteam.muhm.testdaten_maven.app.model.Help;
+import at.htlstp.projektteam.muhm.testdaten_maven.db.DAO;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -77,10 +78,20 @@ public class TestdatenVerschönerung {
     static String helpingvars2 = "";
     static int i = 0;
     static boolean hb = false;
-
+    private static DAO dao = DAO.getINSTANCE();
     public static void main(String[] args) throws IOException {
+        
         erzeugeDaten();
-
+        /*
+         * lpu Partei
+         * lrh2 Region
+         * lud UmfrageDaten
+         * lup ud_pt
+         */
+        lpu.forEach(x-> dao.persist(x));
+        lrh2.forEach(x-> dao.persist(x));
+        lud.forEach(x-> dao.persist(x));
+        lup.forEach(x->dao.persist(x));
     }
 
     public static void erzeugeDaten() throws IOException {

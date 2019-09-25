@@ -18,6 +18,12 @@ import javax.persistence.EntityTransaction;
  */
 public class DAO implements AutoCloseable {
 
+    private static final DAO INSTANCE = new DAO();
+
+    private DAO() {
+    }
+
+    
     public boolean persist(Partei partei) {
         Boolean b = true;
         EntityManager em = JPAUtil.getEMF().createEntityManager();
@@ -55,7 +61,7 @@ public class DAO implements AutoCloseable {
         }
         return b;
     }
-    
+
     public boolean persist(UmfrageDaten daten) {
         Boolean b = true;
         EntityManager em = JPAUtil.getEMF().createEntityManager();
@@ -74,7 +80,7 @@ public class DAO implements AutoCloseable {
         }
         return b;
     }
-    
+
     public boolean persist(ud_pt entity) {
         Boolean b = true;
         EntityManager em = JPAUtil.getEMF().createEntityManager();
@@ -93,9 +99,15 @@ public class DAO implements AutoCloseable {
         }
         return b;
     }
-    
+
+    public static DAO getINSTANCE() {
+        return INSTANCE;
+    }
+
     @Override
     public void close() throws Exception {
         JPAUtil.close();
     }
+
+
 }
