@@ -16,10 +16,8 @@ import javax.persistence.ManyToOne;
 
 public class ud_pt {
     @ManyToOne
-    @Column(name = "ud_pt_ud")
     private UmfrageDaten up_ud;
     @ManyToOne
-    @Column(name = "ud_pt_kürzel")
     private Partei up_pt_kürzel;
     @Column(name = "ud_pt_value")
     private int ud_pt_value;
