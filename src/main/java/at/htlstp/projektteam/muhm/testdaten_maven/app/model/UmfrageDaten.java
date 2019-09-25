@@ -10,6 +10,7 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -64,11 +65,12 @@ public class UmfrageDaten {
     private Date ud_datum;
     @Column(name = "ud_befragungsmethode")
     private String ud_befragungsmethode;
-
+    @ManyToOne
+    private Region region;
     public UmfrageDaten() {
     }
 
-    public UmfrageDaten(int id, String institut, String medium, int n, double f, Date datum, String methode) {
+    public UmfrageDaten(int id, String institut, String medium, int n, double f, Date datum, String methode,Region r) {
         this.ud_id = id;
         this.ud_institut = institut;
         this.ud_medium = medium;
@@ -76,6 +78,7 @@ public class UmfrageDaten {
         this.ud_schwankungsbreite = f;
         this.ud_datum = datum;
         this.ud_befragungsmethode = methode;
+        this.region = r;
     }
 
     public int getId() {
