@@ -6,12 +6,16 @@
 
 package at.htlstp.projektteam.muhm.testdaten_maven.app.model;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 /**
  *
  * @author Gabriel Kremsner
  */
 @Entity
-Table(name = "Partei")
+@Table(name = "Partei")
 public class Partei {
 /*"p5Party": "NEOS",*/
     @Id
