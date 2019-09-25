@@ -35,7 +35,7 @@ public class Region implements Serializable {
     public Region() {
     }
 
-    public Region(int rg_id, String rg_name, UmfrageDaten daten) {
+    public Region(int rg_id, String rg_name) {
         this.rg_id = rg_id;
         this.rg_name = rg_name;
 //        this.addUmfrageDatensatz(daten);
