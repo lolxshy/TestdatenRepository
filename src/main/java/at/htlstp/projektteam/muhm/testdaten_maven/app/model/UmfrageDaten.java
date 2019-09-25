@@ -8,9 +8,9 @@ package at.htlstp.projektteam.muhm.testdaten_maven.app.model;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -56,11 +56,12 @@ public class UmfrageDaten {
     private String ud_medium;
     @Column(name = "ud_befragtenanzahl")
     private int ud_befragtenanzahl;
-    @Column(name = "ud_id")
+    @Column(name = "ud_schwankungsbreite")
     private double ud_schwankungsbreite;
-    @Column(name = "ud_id")
+    @Column(name = "ud_datum")
+    @Temporal(TemporalType.DATE)
     private Date ud_datum;
-    @Column(name = "ud_id")
+    @Column(name = "ud_befragungsmethode")
     private String ud_befragungsmethode;
 
     public UmfrageDaten() {
