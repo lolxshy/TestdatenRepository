@@ -29,8 +29,8 @@ public class Region implements Serializable {
     @Column(name = "rg_name")
     private String rg_name;
 
-    @OneToMany(mappedBy = "region")
-    private List<UmfrageDaten> umfrageDatensatz;
+//    @OneToMany(mappedBy = "region")
+//    private List<UmfrageDaten> umfrageDatensatz;
 
     public Region() {
     }
@@ -38,7 +38,7 @@ public class Region implements Serializable {
     public Region(int rg_id, String rg_name, UmfrageDaten daten) {
         this.rg_id = rg_id;
         this.rg_name = rg_name;
-        this.addUmfrageDatensatz(daten);
+//        this.addUmfrageDatensatz(daten);
     }
 
     public String getRg_name() {
@@ -58,17 +58,17 @@ public class Region implements Serializable {
         return "Region{" + "rg_id=" + rg_id + ", rg_name=" + rg_name + '}';
     }
 
-    public List<UmfrageDaten> getUmfrageDatensatz() {
-        return umfrageDatensatz;
-    }
-
-    public void setUmfrageDatensatz(List<UmfrageDaten> umfrageDatensatz) {
-        this.umfrageDatensatz = umfrageDatensatz;
-    }
-
-    public void addUmfrageDatensatz(UmfrageDaten daten) {
-        this.umfrageDatensatz.add(daten);
-    }
+//    public List<UmfrageDaten> getUmfrageDatensatz() {
+//        return umfrageDatensatz;
+//    }
+//
+//    public void setUmfrageDatensatz(List<UmfrageDaten> umfrageDatensatz) {
+//        this.umfrageDatensatz = umfrageDatensatz;
+//    }
+//
+//    public void addUmfrageDatensatz(UmfrageDaten daten) {
+//        this.umfrageDatensatz.add(daten);
+//    }
 
     @Override
     public int hashCode() {
