@@ -5,16 +5,13 @@
  */
 
 package at.htlstp.projektteam.muhm.testdaten_maven.app.model;
-
+import java.util.Objects;
 /**
  *
  * @author Gabriel Kremsner
  */
 @Entity
 Table(name = "Partei")
-
-import java.util.Objects;
-(name = "Partei")
 public class Partei {
 /*"p5Party": "NEOS",*/
     @Id
