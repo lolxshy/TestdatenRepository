@@ -6,11 +6,17 @@
 package at.htlstp.projektteam.muhm.testdaten_maven.app.model;
 
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  *
  * @author Gabriel Kremsner
  */
+@Entity
 public class UmfrageDaten {
 
     /*"ud_id": 1522,
@@ -41,12 +47,20 @@ public class UmfrageDaten {
 "p6Value": "2",
 "p6Css": "pilz"
      */
+    @Id
+    @Column(name = "ud_id")
     private int ud_id;
+    @Column(name = "ud_institut")
     private String ud_institut;
+    @Column(name = "ud_medium")
     private String ud_medium;
+    @Column(name = "ud_befragtenanzahl")
     private int ud_befragtenanzahl;
+    @Column(name = "ud_id")
     private double ud_schwankungsbreite;
+    @Column(name = "ud_id")
     private Date ud_datum;
+    @Column(name = "ud_id")
     private String ud_befragungsmethode;
 
     public UmfrageDaten() {
