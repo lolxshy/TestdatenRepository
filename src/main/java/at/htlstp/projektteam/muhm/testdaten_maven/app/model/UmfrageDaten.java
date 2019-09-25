@@ -135,7 +135,7 @@ public class UmfrageDaten {
 
     @Override
     public String toString() {
-        return "UmfrageDaten{" + "ud_id=" + ud_id + ", ud_institut=" + ud_institut + ", ud_medium=" + ud_medium + ", ud_befragtenanzahl=" + ud_befragtenanzahl + ", ud_schwankungsbreite=" + ud_schwankungsbreite + ", ud_datum=" + ud_datum + ", ud_befragungsmethode=" + ud_befragungsmethode + '}';
+        return "UmfrageDaten{" + "ud_id=" + ud_id + ", ud_institut=" + ud_institut + ", ud_medium=" + ud_medium + ", ud_befragtenanzahl=" + ud_befragtenanzahl + ", ud_schwankungsbreite=" + ud_schwankungsbreite + ", ud_datum=" + ud_datum + ", ud_befragungsmethode=" + ud_befragungsmethode +", "+ region + '}';
     }
 
     @Override
