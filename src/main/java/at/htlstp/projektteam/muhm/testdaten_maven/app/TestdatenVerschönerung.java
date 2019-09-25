@@ -60,24 +60,30 @@ public class TestdatenVerschönerung {
 "p6Value": "2",
 "p6Css": "pilz"
      */
+    static List<String> ls = new ArrayList<>();
+    static List<Help> lh = new ArrayList<>();
+    static List<List<String>> lls = new ArrayList<>();
+    static List<Region> lr = new ArrayList<>();
+    static Map<Integer, String> lrh;
+    static List<Region> lrh2 = new ArrayList<>();
+    static List<UmfrageDaten> lud = new ArrayList();
+    static List<Partei> lp = new ArrayList<>();//Liste der Parteien
+    static Set<String> lph;//Set zum unikate erstellen
+    static List<Partei> lpu = new ArrayList<>();//unique Partei List
+    static List<ud_pt> lup = new ArrayList();
+    static int helpingvar1;
+    static int helpingvar2;
+    static String helpingvars1 = "";
+    static String helpingvars2 = "";
+    static int i = 0;
+    static boolean hb = false;
+
     public static void main(String[] args) throws IOException {
-        List<String> ls = new ArrayList<>();
-        List<Help> lh = new ArrayList<>();
-        List<List<String>> lls = new ArrayList<>();
-        List<Region> lr = new ArrayList<>();
-        Map<Integer, String> lrh;
-        List<Region> lrh2 = new ArrayList<>();
-        List<UmfrageDaten> lud = new ArrayList();
-        List<Partei> lp = new ArrayList<>();//Liste der Parteien
-        Set<String> lph;//Set zum unikate erstellen
-        List<Partei> lpu = new ArrayList<>();//unique Partei List
-        List<ud_pt> lup = new ArrayList();
-        int helpingvar1;
-        int helpingvar2;
-        String helpingvars1 = "";
-        String helpingvars2 = "";
-        int i = 0;
-        boolean hb = false;
+        erzeugeDaten();
+
+    }
+
+    public static void erzeugeDaten() throws IOException {
 
         ls = Files.lines(Paths.get("neuwal-wahlumfragen-user.json")).skip(2)
                 .filter(s -> !(s.contains("}") || s.contains("{") || s.equals(",")))
@@ -138,7 +144,7 @@ public class TestdatenVerschönerung {
         i = 0;
 //        System.out.println(lh);
         for (Help h : lh) {
-           
+
 //            System.out.println(h);
             lp.add(new Partei(h.getPt_party1()));
             lp.add(new Partei(h.getPt_party2()));
@@ -148,13 +154,13 @@ public class TestdatenVerschönerung {
             lp.add(new Partei(h.getPt_party6()));
             lr.add(new Region(h.getRg_id(), h.getRg_name()));
 //            if (!(p.getParty().equals(h.getPt_party1()) || p.getParty().equals(h.getPt_party2()) || p.getParty().equals(h.getPt_party3()) || p.getParty().equals(h.getPt_party4()) || p.getParty().equals(h.getPt_party5()) || p.getParty().equals(h.getPt_party6()))) {
-            lud.add(new UmfrageDaten(h.getUd_id(), h.getUd_institut(), h.getUd_medium(), h.getUd_befragtenanzahl(), h.getUd_schwankungsbreite(), h.getUd_datum(), h.getUd_befragungsmethode(),lr.get(i)));
-            lup.add(new ud_pt(lud.get(i), lp.get(i*6), h.getUp_value1()));
-            lup.add(new ud_pt(lud.get(i), lp.get((i*6)+1), h.getUp_value2()));
-            lup.add(new ud_pt(lud.get(i), lp.get((i*6)+2), h.getUp_value3()));
-            lup.add(new ud_pt(lud.get(i), lp.get((i*6)+3), h.getUp_value4()));
-            lup.add(new ud_pt(lud.get(i), lp.get((i*6)+4), h.getUp_value5()));
-            lup.add(new ud_pt(lud.get(i), lp.get((i*6)+5), h.getUp_value6())); 
+            lud.add(new UmfrageDaten(h.getUd_id(), h.getUd_institut(), h.getUd_medium(), h.getUd_befragtenanzahl(), h.getUd_schwankungsbreite(), h.getUd_datum(), h.getUd_befragungsmethode(), lr.get(i)));
+            lup.add(new ud_pt(lud.get(i), lp.get(i * 6), h.getUp_value1()));
+            lup.add(new ud_pt(lud.get(i), lp.get((i * 6) + 1), h.getUp_value2()));
+            lup.add(new ud_pt(lud.get(i), lp.get((i * 6) + 2), h.getUp_value3()));
+            lup.add(new ud_pt(lud.get(i), lp.get((i * 6) + 3), h.getUp_value4()));
+            lup.add(new ud_pt(lud.get(i), lp.get((i * 6) + 4), h.getUp_value5()));
+            lup.add(new ud_pt(lud.get(i), lp.get((i * 6) + 5), h.getUp_value6()));
             i++;
         }
         System.out.println(i);
@@ -193,7 +199,5 @@ public class TestdatenVerschönerung {
             System.out.println(ud);
         }
         System.out.println(lup.size());
-
     }
-
 }
