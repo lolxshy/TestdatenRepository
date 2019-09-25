@@ -148,7 +148,7 @@ public class TestdatenVerschönerung {
             lp.add(new Partei(h.getPt_party6()));
             lr.add(new Region(h.getRg_id(), h.getRg_name()));
 //            if (!(p.getParty().equals(h.getPt_party1()) || p.getParty().equals(h.getPt_party2()) || p.getParty().equals(h.getPt_party3()) || p.getParty().equals(h.getPt_party4()) || p.getParty().equals(h.getPt_party5()) || p.getParty().equals(h.getPt_party6()))) {
-            lud.add(new UmfrageDaten(h.getUd_id(), h.getUd_institut(), h.getUd_medium(), h.getUd_befragtenanzahl(), h.getUd_schwankungsbreite(), h.getUd_datum(), h.getUd_befragungsmethode()));
+            lud.add(new UmfrageDaten(h.getUd_id(), h.getUd_institut(), h.getUd_medium(), h.getUd_befragtenanzahl(), h.getUd_schwankungsbreite(), h.getUd_datum(), h.getUd_befragungsmethode(),lr.get(i)));
             lup.add(new ud_pt(lud.get(i), lp.get(i*6), h.getUp_value1()));
             lup.add(new ud_pt(lud.get(i), lp.get((i+1)*6), h.getUp_value2()));
             lup.add(new ud_pt(lud.get(i), lp.get((i+2)*6), h.getUp_value3()));
