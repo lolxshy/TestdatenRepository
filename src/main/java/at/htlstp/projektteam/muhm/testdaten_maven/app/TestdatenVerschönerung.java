@@ -62,23 +62,25 @@ public class TestdatenVerschönerung {
 "p6Value": "2",
 "p6Css": "pilz"
      */
-    static List<String> ls = new ArrayList<>();//Liste der gesamten Zeilen des Files
-    static List<Help> lh = new ArrayList<>();//Liste von Help(Help ist eine Hilfsklasse in der zuerst die ganzen Zeilen in die Entsprechenden Datentypen verwandelt werden) 
-    static List<List<String>> lls = new ArrayList<>();// Hier werden Listen von Strings in einer Liste gespeichert,dies hat den Vorteil das die Speicherung der Zeilen in die Helpklasse leichter ist
-    static List<Region> lr = new ArrayList<>();//Liste von Regionen in dieser Liste werden Regionen aber mehrmals gespeichert
-    static Map<Integer, String> lrh;//Map die dazu dient die Regionen einzigartig zu machen
-    static List<Region> lrh2 = new ArrayList<>();//unique Liste von Regionen
-    static List<UmfrageDaten> lud = new ArrayList();//Liste der Umfragedaten
-    static List<Partei> lp = new ArrayList<>();//Liste der Parteien
-    static Set<String> lph;//Set zum unikate erstellen
-    static List<Partei> lpu = new ArrayList<>();//unique Partei List
-    static List<ud_pt> lup = new ArrayList();//Liste der Beziehungsentitys
-    static int helpingvar1;//Variable zur Hilfe falls Party 6 keine Value hat
-    static int helpingvar2;//Variable zur Hilfe falls Party 5 keine Value hat
-    static String helpingvars1 = "";//Variable zur Hilfe falls Party 6 keine Bezeichnung hat
-    static String helpingvars2 = "";//Variable zur Hilfe falls Party 5 keine Bezeichnung hat
-    static int i = 0;//Variable, die beim Speichern der Zeilen in eine Liste, zur Verwendung kommt
-    private static DAO dao = DAO.getINSTANCE(); //DAO objekt für Datenbankmethoden
+    static List<String> ls = new ArrayList<>();         // Liste der gesamten Zeilen des Files
+    static List<Help> lh = new ArrayList<>();           // Liste von Help
+    // (Help ist eine Hilfsklasse in der zuerst die ganzen Zeilen in die Entsprechenden Datentypen verwandelt werde)
+    static List<List<String>> lls = new ArrayList<>();  // Hier werden Listen von Strings in einer Liste gespeichert, 
+    // dies hat den Vorteil das die Speicherung der Zeilen in die Helpklasse leichter ist
+    static List<Region> lr = new ArrayList<>();         // Liste von Regionen in dieser Liste werden Regionen aber mehrmals gespeichert
+    static Map<Integer, String> lrh;                    // Map die dazu dient die Regionen einzigartig zu machen
+    static List<Region> lrh2 = new ArrayList<>();       // unique Liste von Regionen
+    static List<UmfrageDaten> lud = new ArrayList();    // Liste der Umfragedaten
+    static List<Partei> lp = new ArrayList<>();         // Liste der Parteien
+    static Set<String> lph;                             // Set zum unikate erstellen
+    static List<Partei> lpu = new ArrayList<>();        // unique Partei List
+    static List<ud_pt> lup = new ArrayList();           // Liste der Beziehungsentitys
+    static int helpingvar1;                             // Variable zur Hilfe falls Party 6 keine Value hat
+    static int helpingvar2;                             // Variable zur Hilfe falls Party 5 keine Value hat
+    static String helpingvars1 = "";                    // Variable zur Hilfe falls Party 6 keine Bezeichnung hat
+    static String helpingvars2 = "";                    // Variable zur Hilfe falls Party 5 keine Bezeichnung hat
+    static int i = 0;                                   // Variable, die beim Speichern der Zeilen in eine Liste, zur Verwendung kommt
+    private static DAO dao = DAO.getINSTANCE();         // DAO objekt für Datenbankmethoden
 
     public static void main(String[] args) throws IOException {
 
@@ -156,6 +158,7 @@ public class TestdatenVerschönerung {
         //  System.err.println(lh.size());
         i = 0;
 //        System.out.println(lh);
+
 // Hier werden die Helpobjekte in die Entsprechenden Klassen gespeichert      
         for (Help h : lh) {
 
@@ -182,6 +185,7 @@ public class TestdatenVerschönerung {
         for (String s : lph) {
             lpu.add(new Partei(s));
         }
+
 //        System.out.println("Parteien:\n\n---------------------------------------------------------------------------------------------------------");
 //        for (Partei p : lpu) {
 //            System.out.println(p);
@@ -189,9 +193,7 @@ public class TestdatenVerschönerung {
 //        System.out.println(lpu.size());
 //        System.out.println("Regionen:\n\n---------------------------------------------------------------------------------------------------------");
         lrh = new TreeMap<>();
-        for (Region r : lr) {
-            lrh.put(r.getRg_id(), r.getRg_name());
-        }
+        lr.forEach(x -> lrh.put(x.getRg_id(), x.getRg_name()));
         for (int j = 0; j < 88; j++) {
             if (lrh.containsKey(j)) {
                 lrh2.add(new Region(j, lrh.get(j)));
