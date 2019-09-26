@@ -33,6 +33,7 @@ public class TestdatenVerschönerung {
      * @param args the command line arguments
      */
     /*
+    Aufbau des Json Objekts:
 "id": 1522,
 "regionID": "1",
 "region": "ÖSTERREICH",
@@ -61,42 +62,42 @@ public class TestdatenVerschönerung {
 "p6Value": "2",
 "p6Css": "pilz"
      */
-    static List<String> ls = new ArrayList<>();
-    static List<Help> lh = new ArrayList<>();
-    static List<List<String>> lls = new ArrayList<>();
-    static List<Region> lr = new ArrayList<>();
-    static Map<Integer, String> lrh;
-    static List<Region> lrh2 = new ArrayList<>();
-    static List<UmfrageDaten> lud = new ArrayList();
+    static List<String> ls = new ArrayList<>();//Liste der gesamten Zeilen des Files
+    static List<Help> lh = new ArrayList<>();//Liste von Help(Help ist eine Hilfsklasse in der zuerst die ganzen Zeilen in die Entsprechenden Datentypen verwandelt werden) 
+    static List<List<String>> lls = new ArrayList<>();// Hier werden Listen von Strings in einer Liste gespeichert,dies hat den Vorteil das die Speicherung der Zeilen in die Helpklasse leichter ist
+    static List<Region> lr = new ArrayList<>();//Liste von Regionen in dieser Liste werden Regionen aber mehrmals gespeichert
+    static Map<Integer, String> lrh;//Map die dazu dient die Regionen einzigartig zu machen
+    static List<Region> lrh2 = new ArrayList<>();//unique Liste von Regionen
+    static List<UmfrageDaten> lud = new ArrayList();//Liste der Umfragedaten
     static List<Partei> lp = new ArrayList<>();//Liste der Parteien
     static Set<String> lph;//Set zum unikate erstellen
     static List<Partei> lpu = new ArrayList<>();//unique Partei List
-    static List<ud_pt> lup = new ArrayList();
-    static int helpingvar1;
-    static int helpingvar2;
-    static String helpingvars1 = "";
-    static String helpingvars2 = "";
-    static int i = 0;
-    static boolean hb = false;
-    private static DAO dao = DAO.getINSTANCE();
+    static List<ud_pt> lup = new ArrayList();//Liste der Beziehungsentitys
+    static int helpingvar1;//Variable zur Hilfe falls Party 6 keine Value hat
+    static int helpingvar2;//Variable zur Hilfe falls Party 5 keine Value hat
+    static String helpingvars1 = "";//Variable zur Hilfe falls Party 6 keine Bezeichnung hat
+    static String helpingvars2 = "";//Variable zur Hilfe falls Party 5 keine Bezeichnung hat
+    static int i = 0;//Variable, die beim Speichern der Zeilen in eine Liste, zur Verwendung kommt
+    private static DAO dao = DAO.getINSTANCE(); //DAO objekt für Datenbankmethoden
+
     public static void main(String[] args) throws IOException {
-        
+
         erzeugeDaten();
         /*
-         * lpu Partei
-         * lrh2 Region
-         * lud UmfrageDaten
-         * lup ud_pt
+        Persistierung der Testdaten mit Hilfe von DAO Methoden
          */
-        lpu.forEach(x-> dao.persist(x));
-        lrh2.forEach(x-> dao.persist(x));
-        lud.forEach(x-> dao.persist(x));
-        lup.forEach(x->dao.persist(x));
+        lpu.forEach(x -> dao.persist(x));
+        lrh2.forEach(x -> dao.persist(x));
+        lud.forEach(x -> dao.persist(x));
+        lup.forEach(x -> dao.persist(x));
     }
 
+    /*
+    Methode zur Verarbeitung der Testdaten.
+    In dieser Methode wird das JSON Objekt in Java Klassen umgemappt.
+     */
     public static void erzeugeDaten() throws IOException {
-
-        ls = Files.lines(Paths.get("neuwal-wahlumfragen-user.json")).skip(2)
+        ls = Files.lines(Paths.get("neuwal-wahlumfragen-user.json")).skip(2) // hier werden die Ersten 2 Objekte übersprungen, da in der File hier der Objektname steht
                 .filter(s -> !(s.contains("}") || s.contains("{") || s.equals(",")))
                 .collect(Collectors.toList());
 //        System.out.println(ls.size() / 27);
@@ -105,7 +106,7 @@ public class TestdatenVerschönerung {
         }
         for (List<String> ls1 : lls) {
             //System.out.println(ls1.get(25));
-
+            //Hier wird überprüft ob Party6 und Party5 eine Value und oder eine Bezeichnung besitzen ansonsten wird 0 und unbekannt als Wert eingetragen
             if (ls1.get(25).split(":")[1].equals(" \"\",") || ls1.get(25).split(":")[1].equals("\"\",")) {
                 helpingvar1 = 0;
             } else {
@@ -126,6 +127,7 @@ public class TestdatenVerschönerung {
             } else {
                 helpingvars2 = ls1.get(21).split(":")[1].replace(",", " ").trim();
             }
+            //Hier wird die Liste lh mit Help Objekten gefüllt
             lh.add(new Help(
                     Integer.parseInt(ls1.get(0).split(":")[1].replace(",", " ").trim()),
                     Integer.parseInt(ls1.get(1).split(":")[1].replace(",", " ").replace("\"", " ").trim()),
@@ -151,9 +153,10 @@ public class TestdatenVerschönerung {
             )
             );
         }
-        System.err.println(lh.size());
+        //  System.err.println(lh.size());
         i = 0;
 //        System.out.println(lh);
+// Hier werden die Helpobjekte in die Entsprechenden Klassen gespeichert      
         for (Help h : lh) {
 
 //            System.out.println(h);
@@ -174,17 +177,17 @@ public class TestdatenVerschönerung {
             lup.add(new ud_pt(lud.get(i), lp.get((i * 6) + 5), h.getUp_value6()));
             i++;
         }
-        System.out.println(i);
+        //System.out.println(i);
         lph = new TreeSet<String>(lp.stream().map(lap -> lap.getParty()).collect(Collectors.toList()));
         for (String s : lph) {
             lpu.add(new Partei(s));
         }
-        System.out.println("Parteien:\n\n---------------------------------------------------------------------------------------------------------");
-        for (Partei p : lpu) {
-            System.out.println(p);
-        }
-        System.out.println(lpu.size());
-        System.out.println("Regionen:\n\n---------------------------------------------------------------------------------------------------------");
+//        System.out.println("Parteien:\n\n---------------------------------------------------------------------------------------------------------");
+//        for (Partei p : lpu) {
+//            System.out.println(p);
+//        }
+//        System.out.println(lpu.size());
+//        System.out.println("Regionen:\n\n---------------------------------------------------------------------------------------------------------");
         lrh = new TreeMap<>();
         for (Region r : lr) {
             lrh.put(r.getRg_id(), r.getRg_name());
@@ -195,19 +198,19 @@ public class TestdatenVerschönerung {
             }
         }
 
-        for (Region r : lrh2) {
-            System.out.println(r);
-        }
-        System.out.println(lrh2.size());
-        System.out.println("UmfrageDaten:\n\n---------------------------------------------------------------------------------------------------------");
-        for (UmfrageDaten ud : lud) {
-            System.out.println(ud);
-        }
-        System.out.println(lud.size());
-        System.out.println("Beziehungstabelle:\n\n---------------------------------------------------------------------------------------------------------");
-        for (ud_pt ud : lup) {
-            System.out.println(ud);
-        }
-        System.out.println(lup.size());
+//        for (Region r : lrh2) {
+//            System.out.println(r);
+//        }
+//        System.out.println(lrh2.size());
+//        System.out.println("UmfrageDaten:\n\n---------------------------------------------------------------------------------------------------------");
+//        for (UmfrageDaten ud : lud) {
+//            System.out.println(ud);
+//       }
+//        System.out.println(lud.size());
+//        System.out.println("Beziehungstabelle:\n\n---------------------------------------------------------------------------------------------------------");
+//        for (ud_pt ud : lup) {
+//            System.out.println(ud);
+//        }
+//        System.out.println(lup.size());
     }
 }
