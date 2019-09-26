@@ -190,7 +190,7 @@ public class TestdatenVerschönerung {
         for (Region r : lr) {
             lrh.put(r.getRg_id(), r.getRg_name());
         }
-        for (int j = 0; j < lrh.size(); j++) {
+        for (int j = 0; j < 88; j++) {
             if (lrh.containsKey(j)) {
                 lrh2.add(new Region(j, lrh.get(j)));
             }
