@@ -19,7 +19,8 @@ public class JPAUtil {
 
     static {
         try {
-            EMF = Persistence.createEntityManagerFactory("at.htlstp.projektteam.muhm_Testdaten_maven_jar_1.0-SNAPSHOTPU");
+            EMF = Persistence.createEntityManagerFactory("at.htlstp.projektteam.muhm_Testdaten_maven_jar_1.0-SNAPSHOTPU"); 
+//         Der Parameter in der Zeile 22 ist der Name der Persistenzeinheit, siehe src/main/resources/META-INF/persistence.xml
         } catch (Exception ex) {
             System.err.println("EntityManagerFactory creation faild: " + ex);
             throw new ExceptionInInitializerError(ex);
