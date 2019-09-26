@@ -15,6 +15,17 @@ import javax.persistence.EntityTransaction;
 /**
  *
  * @author 20140416
+ * Diese Klasse ist das Bindeglied zwischen der Java Welt und der Datenbank.
+ * Ebenfalls wurde die Klasse auch als ein Singleton implementiert.
+ * Die persist - Methode wird hier mehrfach überladen, für die folgenden Klassentypen:
+ *      - Partei
+ *      - Region
+ *      - UmfrageDaten
+ *      - ud_pt
+ * Innerhalb der Methoden werden ein EntityManager und eine EntityTransaction erstellet. 
+ * Mit diesen wird der gesamte Vorgang des, persitieren der Daten, abgearbeitet.
+ * Der Vorgang beginnt damit, dass eine Transaktion geöffnet wird, das Objekt persistiert wird und und Transasktion commited wird. 
+ * Dadurch wird sie auch automatisch wieder geschlossen.
  */
 public class DAO implements AutoCloseable {
 
