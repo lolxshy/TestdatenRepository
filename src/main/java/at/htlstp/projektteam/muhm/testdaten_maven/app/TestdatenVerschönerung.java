@@ -176,7 +176,6 @@ public class TestdatenVerschönerung {
         }
         System.out.println(i);
         lph = new TreeSet<String>(lp.stream().map(lap -> lap.getParty()).collect(Collectors.toList()));
-        lph.remove(lph.toArray()[0]);
         for (String s : lph) {
             lpu.add(new Partei(s));
         }

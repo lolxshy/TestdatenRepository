@@ -5,6 +5,7 @@
     <class>at.htlstp.projektteam.muhm.testdaten_maven.app.model.Partei</class>
     <class>at.htlstp.projektteam.muhm.testdaten_maven.app.model.Region</class>
     <class>at.htlstp.projektteam.muhm.testdaten_maven.app.model.UmfrageDaten</class>
+    <class>at.htlstp.projektteam.muhm.testdaten_maven.app.model.ud_pt</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://10.128.6.5:5432/proj_test_wahlen"/>
       <property name="javax.persistence.jdbc.user" value="5BHIF_18"/>

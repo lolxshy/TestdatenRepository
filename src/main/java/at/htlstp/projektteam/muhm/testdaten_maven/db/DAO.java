@@ -32,6 +32,7 @@ public class DAO implements AutoCloseable {
             tx.begin();
             em.persist(partei);
             tx.commit();
+            System.out.println("partei:::"+partei.getParty() + " wurde persistiert!");
         } catch (Exception e) {
             b = false;
             if (tx.isActive()) {
@@ -51,6 +52,7 @@ public class DAO implements AutoCloseable {
             tx.begin();
             em.persist(region);
             tx.commit();
+            System.out.println("Region:::::"+region.getRg_name() + "wurde persistiert");
         } catch (Exception e) {
             b = false;
             if (tx.isActive()) {
@@ -70,6 +72,7 @@ public class DAO implements AutoCloseable {
             tx.begin();
             em.persist(daten);
             tx.commit();
+            System.out.println("Umfrage:::::"+daten.getDatum() + "wurde persistiert");
         } catch (Exception e) {
             b = false;
             if (tx.isActive()) {
@@ -89,7 +92,9 @@ public class DAO implements AutoCloseable {
             tx.begin();
             em.persist(entity);
             tx.commit();
+            System.out.println("beziehungstabelle:::::"+entity+ "wurde persistiert");
         } catch (Exception e) {
+            e.printStackTrace();
             b = false;
             if (tx.isActive()) {
                 tx.rollback();

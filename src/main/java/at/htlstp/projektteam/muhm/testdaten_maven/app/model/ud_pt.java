@@ -10,11 +10,23 @@ package at.htlstp.projektteam.muhm.testdaten_maven.app.model;
  *
  * @author Gabriel Kremsner
  */
+import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-public class ud_pt {
+@Entity
+@Table(name = "ud_pt")
+public class ud_pt implements Serializable {
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    private Long id;
+    
     @ManyToOne
     private UmfrageDaten up_ud;
     @ManyToOne
