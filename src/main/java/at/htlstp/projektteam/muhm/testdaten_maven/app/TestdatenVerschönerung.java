@@ -88,10 +88,12 @@ public class TestdatenVerschönerung {
         /*
         Persistierung der Testdaten mit Hilfe von DAO Methoden
          */
-        lpu.forEach(x -> dao.persist(x));
-        lrh2.forEach(x -> dao.persist(x));
-        lud.forEach(x -> dao.persist(x));
-        lup.forEach(x -> dao.persist(x));
+//        lpu.forEach(x -> dao.persist(x));
+//        lrh2.forEach(x -> dao.persist(x));
+//        lud.forEach(x -> dao.persist(x));
+//        lup.forEach(x -> dao.persist(x));
+
+
     }
 
     /*
@@ -186,12 +188,12 @@ public class TestdatenVerschönerung {
             lpu.add(new Partei(s));
         }
 
-//        System.out.println("Parteien:\n\n---------------------------------------------------------------------------------------------------------");
-//        for (Partei p : lpu) {
-//            System.out.println(p);
-//        }
-//        System.out.println(lpu.size());
-//        System.out.println("Regionen:\n\n---------------------------------------------------------------------------------------------------------");
+        System.out.println("Parteien:\n\n---------------------------------------------------------------------------------------------------------");
+        for (Partei p : lpu) {
+            System.out.println(p);
+        }
+        System.out.println(lpu.size());
+        System.out.println("Regionen:\n\n---------------------------------------------------------------------------------------------------------");
         lrh = new TreeMap<>();
         lr.forEach(x -> lrh.put(x.getRg_id(), x.getRg_name()));
         for (int j = 0; j < 88; j++) {
@@ -200,19 +202,19 @@ public class TestdatenVerschönerung {
             }
         }
 
-//        for (Region r : lrh2) {
-//            System.out.println(r);
-//        }
-//        System.out.println(lrh2.size());
-//        System.out.println("UmfrageDaten:\n\n---------------------------------------------------------------------------------------------------------");
-//        for (UmfrageDaten ud : lud) {
-//            System.out.println(ud);
-//       }
-//        System.out.println(lud.size());
-//        System.out.println("Beziehungstabelle:\n\n---------------------------------------------------------------------------------------------------------");
-//        for (ud_pt ud : lup) {
-//            System.out.println(ud);
-//        }
-//        System.out.println(lup.size());
+        for (Region r : lrh2) {
+            System.out.println(r);
+        }
+        System.out.println(lrh2.size());
+        System.out.println("UmfrageDaten:\n\n---------------------------------------------------------------------------------------------------------");
+        for (UmfrageDaten ud : lud) {
+            System.out.println(ud);
+       }
+        System.out.println(lud.size());
+        System.out.println("Beziehungstabelle:\n\n---------------------------------------------------------------------------------------------------------");
+        for (ud_pt ud : lup) {
+            System.out.println(ud);
+        }
+        System.out.println(lup.size());
     }
 }
