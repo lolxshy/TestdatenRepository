@@ -88,10 +88,10 @@ public class TestdatenVerschönerung {
         /*
         Persistierung der Testdaten mit Hilfe von DAO Methoden
          */
-//        lpu.forEach(x -> dao.persist(x));
-//        lrh2.forEach(x -> dao.persist(x));
-//        lud.forEach(x -> dao.persist(x));
-//        lup.forEach(x -> dao.persist(x));
+        lpu.forEach(x -> dao.persist(x));
+        lrh2.forEach(x -> dao.persist(x));
+        lud.forEach(x -> dao.persist(x));
+        lup.forEach(x -> dao.persist(x));
 
 
     }
@@ -216,5 +216,6 @@ public class TestdatenVerschönerung {
             System.out.println(ud);
         }
         System.out.println(lup.size());
+        System.out.println((lpu.size()+lup.size()+lud.size()+lrh2.size()));
     }
 }
