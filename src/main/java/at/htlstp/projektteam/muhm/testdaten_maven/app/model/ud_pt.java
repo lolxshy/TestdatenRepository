@@ -25,6 +25,7 @@ import javax.persistence.Table;
 public class ud_pt implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    @Column(name = "ud_pt_id")
     private Long id;
     
     @ManyToOne

@@ -88,11 +88,10 @@ public class TestdatenVerschönerung {
         /*
         Persistierung der Testdaten mit Hilfe von DAO Methoden
          */
-        lpu.forEach(x -> dao.persist(x));
-        lrh2.forEach(x -> dao.persist(x));
-        lud.forEach(x -> dao.persist(x));
-        lup.forEach(x -> dao.persist(x));
-
+//        lpu.forEach(x -> dao.persist(x));
+//        lrh2.forEach(x -> dao.persist(x));
+//        lud.forEach(x -> dao.persist(x));
+//        lup.forEach(x -> dao.persist(x));
 
     }
 
@@ -104,6 +103,7 @@ public class TestdatenVerschönerung {
         ls = Files.lines(Paths.get("neuwal-wahlumfragen-user.json")).skip(2) // hier werden die Ersten 2 Objekte übersprungen, da in der File hier der Objektname steht
                 .filter(s -> !(s.contains("}") || s.contains("{") || s.equals(",")))
                 .collect(Collectors.toList());
+  
 //        System.out.println(ls.size() / 27);
         for (i = 0; i < ls.size(); i += 27) {
             lls.add(ls.subList(i, i + 27));
@@ -135,20 +135,20 @@ public class TestdatenVerschönerung {
             lh.add(new Help(
                     Integer.parseInt(ls1.get(0).split(":")[1].replace(",", " ").trim()),
                     Integer.parseInt(ls1.get(1).split(":")[1].replace(",", " ").replace("\"", " ").trim()),
-                    ls1.get(2).split(":")[1].replace(",", " ").trim(),
-                    ls1.get(3).split(":")[1].replace(",", " ").trim(),
-                    ls1.get(4).split(":")[1].replace(",", " ").trim(),
+                    ls1.get(2).split(":")[1].replace(",", " ").replace("\""," ").trim(),
+                    ls1.get(3).split(":")[1].replace(",", " ").replace("\""," ").trim(),
+                    ls1.get(4).split(":")[1].replace(",", " ").replace("\""," ").trim(),
                     Integer.parseInt(ls1.get(5).split(":")[1].replace(",", " ").trim()),
                     Double.parseDouble(ls1.get(6).split(":")[1].replace(",", " ").trim()),
                     Date.valueOf(ls1.get(7).split(":")[1].replace(",", " ").replace("\"", " ").trim()),
-                    ls1.get(8).split(":")[1].replace(",", " ").trim(),
-                    ls1.get(9).split(":")[1].replace(",", " ").trim(),
+                    ls1.get(8).split(":")[1].replace(",", " ").replace("\""," ").trim(),
+                    ls1.get(9).split(":")[1].replace(",", " ").replace("\""," ").trim(),
                     Integer.parseInt(ls1.get(10).split(":")[1].replace(",", " ").replace("\"", " ").trim()),
-                    ls1.get(12).split(":")[1].replace(",", " ").trim(),
+                    ls1.get(12).split(":")[1].replace(",", " ").replace("\""," ").trim(),
                     Integer.parseInt(ls1.get(13).split(":")[1].replace(",", " ").replace("\"", " ").trim()),
-                    ls1.get(15).split(":")[1].replace(",", " ").trim(),
+                    ls1.get(15).split(":")[1].replace(",", " ").replace("\""," ").trim(),
                     Integer.parseInt(ls1.get(16).split(":")[1].replace(",", " ").replace("\"", " ").trim()),
-                    ls1.get(18).split(":")[1].replace(",", " ").trim(),
+                    ls1.get(18).split(":")[1].replace(",", " ").replace("\""," ").trim(),
                     Integer.parseInt(ls1.get(19).split(":")[1].replace(",", " ").replace("\"", " ").trim()),
                     helpingvars2,
                     helpingvar2,
@@ -209,13 +209,13 @@ public class TestdatenVerschönerung {
         System.out.println("UmfrageDaten:\n\n---------------------------------------------------------------------------------------------------------");
         for (UmfrageDaten ud : lud) {
             System.out.println(ud);
-       }
+        }
         System.out.println(lud.size());
         System.out.println("Beziehungstabelle:\n\n---------------------------------------------------------------------------------------------------------");
         for (ud_pt ud : lup) {
             System.out.println(ud);
         }
         System.out.println(lup.size());
-        System.out.println((lpu.size()+lup.size()+lud.size()+lrh2.size()));
+        System.out.println((lpu.size() + lup.size() + lud.size() + lrh2.size()));
     }
 }

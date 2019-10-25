@@ -10,7 +10,7 @@
       <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@//ifbigdata.htl-stp.if:1521/pdbifbigdata.htl-stp.if"/>
       <property name="javax.persistence.jdbc.user" value="wh"/>
       <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
-      <property name="javax.persistence.jdbc.password" value=""/>
+      <property name="javax.persistence.jdbc.password" value="wh"/>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
     </properties>
   </persistence-unit>

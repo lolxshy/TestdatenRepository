@@ -20,33 +20,33 @@ public class Partei {
 /*"p5Party": "NEOS",*/
     @Id
     @Column(name = "pt_kuerzel")
-    private String pt_kürzel;
+    private String pt_kuerzel;
 
 
     public Partei() {
     }
     
     public Partei(String party) {
-        this.pt_kürzel = party;
+        this.pt_kuerzel = party;
     }
 
     public String getParty() {
-        return pt_kürzel;
+        return pt_kuerzel;
     }
 
     public void setParty(String party) {
-        this.pt_kürzel = party;
+        this.pt_kuerzel = party;
     }
 
     @Override
     public String toString() {
-        return "Partei{" + "pt_party=" + pt_kürzel + '}';
+        return "Partei{" + "pt_party=" + pt_kuerzel + '}';
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 11 * hash + Objects.hashCode(this.pt_kürzel);
+        hash = 11 * hash + Objects.hashCode(this.pt_kuerzel);
         return hash;
     }
 
@@ -62,7 +62,7 @@ public class Partei {
             return false;
         }
         final Partei other = (Partei) obj;
-        if (!Objects.equals(this.pt_kürzel, other.pt_kürzel)) {
+        if (!Objects.equals(this.pt_kuerzel, other.pt_kuerzel)) {
             return false;
         }
         return true;
