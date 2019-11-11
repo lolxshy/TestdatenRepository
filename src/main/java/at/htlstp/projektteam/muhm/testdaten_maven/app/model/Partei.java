@@ -35,7 +35,7 @@ public class Partei {
     }
 
     public void setParty(String party) {
-        this.pt_kuerzel = party;
+        this.pt_kuerzel = party.replaceAll("\"","");
     }
 
     @Override

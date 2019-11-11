@@ -31,7 +31,7 @@ public class ud_pt implements Serializable {
     @ManyToOne
     private UmfrageDaten up_ud;
     @ManyToOne
-    private Partei up_pt_kürzel;
+    private Partei up_pt_kuerzel;
     @Column(name = "ud_pt_value")
     private int ud_pt_value;
 
@@ -43,12 +43,12 @@ public class ud_pt implements Serializable {
         this.up_ud = up_ud;
     }
 
-    public Partei getUp_pt_kürzel() {
-        return up_pt_kürzel;
+    public Partei getUp_pt_kuerzel() {
+        return up_pt_kuerzel;
     }
 
-    public void setUp_pt_kürzel(Partei up_pt_kürzel) {
-        this.up_pt_kürzel = up_pt_kürzel;
+    public void setUp_pt_kuerzel(Partei up_pt_kuerzel) {
+        this.up_pt_kuerzel = up_pt_kuerzel;
     }
 
   
@@ -66,20 +66,20 @@ public class ud_pt implements Serializable {
 
     public ud_pt(UmfrageDaten up_ud_id, Partei up_pt_id, int up_value) {
         this.up_ud = up_ud_id;
-        this.up_pt_kürzel = up_pt_id;
+        this.up_pt_kuerzel = up_pt_id;
         this.ud_pt_value = up_value;
     }
 
     @Override
     public String toString() {
-        return "ud_pt{" + "up_ud_id=" + up_ud + ", up_pt_name=" + up_pt_kürzel + ", up_value=" + ud_pt_value + '}';
+        return "ud_pt{" + "up_ud_id=" + up_ud + ", up_pt_name=" + up_pt_kuerzel + ", up_value=" + ud_pt_value + '}';
     }
 
     @Override
     public int hashCode() {
         int hash = 3;
         hash = 71 * hash + Objects.hashCode(this.up_ud);
-        hash = 71 * hash + Objects.hashCode(this.up_pt_kürzel);
+        hash = 71 * hash + Objects.hashCode(this.up_pt_kuerzel);
         hash = 71 * hash + this.ud_pt_value;
         return hash;
     }
@@ -102,7 +102,7 @@ public class ud_pt implements Serializable {
         if (!Objects.equals(this.up_ud, other.up_ud)) {
             return false;
         }
-        if (!Objects.equals(this.up_pt_kürzel, other.up_pt_kürzel)) {
+        if (!Objects.equals(this.up_pt_kuerzel, other.up_pt_kuerzel)) {
             return false;
         }
         return true;
