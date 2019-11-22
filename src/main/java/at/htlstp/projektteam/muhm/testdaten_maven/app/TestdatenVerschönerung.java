@@ -12,6 +12,7 @@ import at.htlstp.projektteam.muhm.testdaten_maven.app.model.Partei;
 import at.htlstp.projektteam.muhm.testdaten_maven.app.model.Help;
 import at.htlstp.projektteam.muhm.testdaten_maven.db.DAO;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Date;
@@ -100,37 +101,15 @@ public class TestdatenVerschönerung {
     In dieser Methode wird das JSON Objekt in Java Klassen umgemappt.
      */
     public static void erzeugeDaten() throws IOException {
-        ls = Files.lines(Paths.get("neuwal-wahlumfragen-user.json")).skip(2) // hier werden die Ersten 2 Objekte übersprungen, da in der File hier der Objektname steht
-                .filter(s -> !(s.contains("}") || s.contains("{") || s.equals(",")))
+        ls = Files.lines(Paths.get("neuwal_data_prepared.txt"), StandardCharsets.ISO_8859_1) // hier werden die Ersten 2 Objekte übersprungen, da in der File hier der Objektname steht
                 .collect(Collectors.toList());
   
-//        System.out.println(ls.size() / 27);
-        for (i = 0; i < ls.size(); i += 27) {
-            lls.add(ls.subList(i, i + 27));
+        System.out.println(ls.size() / 20);
+        for (i = 0; i < ls.size(); i += 21) {
+            lls.add(ls.subList(i, i + 21));
         }
         for (List<String> ls1 : lls) {
-            //System.out.println(ls1.get(25));
-            //Hier wird überprüft ob Party6 und Party5 eine Value und oder eine Bezeichnung besitzen ansonsten wird 0 und unbekannt als Wert eingetragen
-            if (ls1.get(25).split(":")[1].equals(" \"\",") || ls1.get(25).split(":")[1].equals("\"\",")) {
-                helpingvar1 = 0;
-            } else {
-                helpingvar1 = Integer.parseInt(ls1.get(25).split(":")[1].replace(",", " ").replace("\"", " ").trim());
-            }
-            if (ls1.get(24).split(":")[1].contains("?")) {
-                helpingvars1 = "Unbekannt";
-            } else {
-                helpingvars1 = ls1.get(24).split(":")[1].replace(",", " ").trim();
-            }
-            if (ls1.get(22).split(":")[1].equals(" \"\",") || ls1.get(22).split(":")[1].equals("\"\",")) {
-                helpingvar2 = 0;
-            } else {
-                helpingvar2 = Integer.parseInt(ls1.get(22).split(":")[1].replace(",", " ").replace("\"", " ").trim());
-            }
-            if (ls1.get(21).split(":")[1].contains("?")) {
-                helpingvars1 = "Unbekannt";
-            } else {
-                helpingvars2 = ls1.get(21).split(":")[1].replace(",", " ").trim();
-            }
+            
             //Hier wird die Liste lh mit Help Objekten gefüllt
             lh.add(new Help(
                     Integer.parseInt(ls1.get(0).split(":")[1].replace(",", " ").trim()),
@@ -144,16 +123,16 @@ public class TestdatenVerschönerung {
                     ls1.get(8).split(":")[1].replace(",", " ").replace("\""," ").trim(),
                     ls1.get(9).split(":")[1].replace(",", " ").replace("\""," ").trim(),
                     Integer.parseInt(ls1.get(10).split(":")[1].replace(",", " ").replace("\"", " ").trim()),
-                    ls1.get(12).split(":")[1].replace(",", " ").replace("\""," ").trim(),
-                    Integer.parseInt(ls1.get(13).split(":")[1].replace(",", " ").replace("\"", " ").trim()),
+                    ls1.get(11).split(":")[1].replace(",", " ").replace("\""," ").trim(),
+                    Integer.parseInt(ls1.get(12).split(":")[1].replace(",", " ").replace("\"", " ").trim()),
+                    ls1.get(13).split(":")[1].replace(",", " ").replace("\""," ").trim(),
+                    Integer.parseInt(ls1.get(14).split(":")[1].replace(",", " ").replace("\"", " ").trim()),
                     ls1.get(15).split(":")[1].replace(",", " ").replace("\""," ").trim(),
                     Integer.parseInt(ls1.get(16).split(":")[1].replace(",", " ").replace("\"", " ").trim()),
-                    ls1.get(18).split(":")[1].replace(",", " ").replace("\""," ").trim(),
-                    Integer.parseInt(ls1.get(19).split(":")[1].replace(",", " ").replace("\"", " ").trim()),
-                    helpingvars2,
-                    helpingvar2,
-                    helpingvars1,
-                    helpingvar1
+                    ls1.get(17).split(":")[1].replace(",", " ").replace("\""," ").trim(),
+                    Integer.parseInt(ls1.get(18).split(":")[1].replace(",", " ").replace("\"", " ").trim()),
+                    ls1.get(19).split(":")[1].replace(",", " ").replace("\""," ").trim(),
+                    Integer.parseInt(ls1.get(20).split(":")[1].replace(",", " ").replace("\"", " ").trim())
             )
             );
         }
